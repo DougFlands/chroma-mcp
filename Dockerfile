@@ -4,6 +4,17 @@ FROM python:3.10-slim
 # set working directory
 WORKDIR /app
 
+# 设置pip淘宝镜像源
+RUN pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/ && \
+    pip config set global.trusted-host mirrors.aliyun.com
+
+# 设置apt中国镜像源 - 完全替换默认源配置
+RUN rm -rf /etc/apt/sources.list.d/* && \
+    echo "deb https://mirrors.ustc.edu.cn/debian/ bookworm main contrib non-free non-free-firmware" > /etc/apt/sources.list && \
+    echo "deb https://mirrors.ustc.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware" >> /etc/apt/sources.list && \
+    echo "deb https://mirrors.ustc.edu.cn/debian-security bookworm-security main contrib non-free non-free-firmware" >> /etc/apt/sources.list
+
+
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends gcc
 
