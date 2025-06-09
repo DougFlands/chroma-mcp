@@ -27,7 +27,7 @@ from chromadb.utils.embedding_functions import (
 )
 
 # Initialize FastMCP server
-mcp = FastMCP("chroma")
+mcp = FastMCP("chroma", settings={"log_level": "debug","host":"127.0.0.1","port":8080})
 
 # Global variables
 _chroma_client = None
@@ -694,7 +694,7 @@ def main():
     
     # Initialize and run the server
     print("Starting MCP server")
-    mcp.run(transport=args.transport,host="127.0.0.1",port=8080,log_level="debug")
+    mcp.run(transport=args.transport)
     
 if __name__ == "__main__":
     main()
