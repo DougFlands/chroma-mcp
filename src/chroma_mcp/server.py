@@ -67,6 +67,9 @@ def create_parser():
     parser.add_argument('--dotenv-path', 
                        help='Path to .env file', 
                        default=os.getenv('CHROMA_DOTENV_PATH', '.chroma_env'))
+    parser.add_argument('--transport', 
+                       help='MCP server transport', 
+                       default=os.getenv('CHROMA_TRANSPORT'))
     return parser
 
 def get_chroma_client(args=None):
@@ -691,7 +694,7 @@ def main():
     
     # Initialize and run the server
     print("Starting MCP server")
-    mcp.run(transport='stdio')
+    mcp.run(transport=args.transport)
     
 if __name__ == "__main__":
     main()
