@@ -7,9 +7,6 @@ from dotenv import load_dotenv
 import argparse
 from chromadb.config import Settings
 import ssl
-import uuid
-import time
-import json
 from typing_extensions import TypedDict
 
 
@@ -27,7 +24,7 @@ from chromadb.utils.embedding_functions import (
 )
 
 # Initialize FastMCP server
-mcp = FastMCP("chroma", settings={"log_level": "debug"})
+mcp = FastMCP("chroma",log_level="debug",port=8080)
 
 # Global variables
 _chroma_client = None
@@ -694,6 +691,7 @@ def main():
     
     # Initialize and run the server
     print("Starting MCP server")
+    print(args.transport)
     mcp.run(transport=args.transport)
     
 if __name__ == "__main__":
