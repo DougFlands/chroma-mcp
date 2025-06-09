@@ -25,6 +25,8 @@ COPY . /app
 RUN python -m pip install --upgrade pip && \
     pip install .
 
+RUN apt-get install -y curl
+
 # Expose any necessary ports if needed (e.g., 8080)
 EXPOSE 8080
 
