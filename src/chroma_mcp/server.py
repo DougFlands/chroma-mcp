@@ -24,7 +24,7 @@ from chromadb.utils.embedding_functions import (
 )
 
 # Initialize FastMCP server
-mcp = FastMCP("chroma",log_level="debug",port=8080)
+mcp = FastMCP("chroma", settings={"log_level": "debug","port":8080})
 
 # Global variables
 _chroma_client = None
