@@ -694,7 +694,7 @@ def main():
     
     # Initialize and run the server
     print("Starting MCP server")
-    mcp.run(transport=args.transport)
+    mcp.run(transport=args.transport,port=8080,log_level="debug")
     
 if __name__ == "__main__":
     main()
